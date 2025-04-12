@@ -4,11 +4,14 @@ import { AntDesign } from '@expo/vector-icons';
 import ButtonComp from '@/src/components/atoms/ButtonComp';
 import { moderateScale, scale, verticalScale } from 'react-native-size-matters';
 import OTPInput from '@codsod/react-native-otp-input';
+import { storage } from '@/src/utils/utils';
 
 const VerifyOtp = () => {
   const [otp, setOtp] = React.useState<string>('');
 
   const onPress = () => {
+    console.log(otp, 'otp');
+    storage.set('access_token', 'fhdfvlbdfbvfvbhnckjnckj');
   }
   return (
     <SafeAreaView style={styles.container}>

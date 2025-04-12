@@ -18,7 +18,7 @@ const ButtonComp:React.FC<ButtonCompProps> = ({title, onPress, style}) => {
 
 export default ButtonComp
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   button_container: {
     backgroundColor: "#00A884",
     width: "100%",
