@@ -7,27 +7,37 @@ interface MessageCardProps {
   image: any
   name: string
   message: string
-  time: string
-  messageCount: number
+  time?: string
+  messageCount?: number
+  logoComponent?: React.ReactNode
+  rightIcon?: React.ReactNode
+  messageLeftIcon?: React.ReactNode
 }
 
-const MessageCard: React.FC<MessageCardProps> = ({image, name, message, time, messageCount}) => {
+const MessageCard: React.FC<MessageCardProps> = ({image, name, message, time, messageCount, logoComponent, rightIcon, messageLeftIcon}) => {
   return (
     <TouchableOpacity style={styles.button}>
       <View style={styles.leftContainer}>
-        <Image source={image} style={styles.image} />
+        <View>
+          <Image source={image} style={styles.image} />
+          {logoComponent}
+        </View>
         <View>
           <Text style={styles.name}>{name}</Text>
-          <Text style={styles.message}>{message}</Text>
+          <View style={styles.flexRow}>
+            {messageLeftIcon}
+            <Text style={styles.message}>{message}</Text>
+          </View>
         </View>
       </View>
       <View style={styles.rightContainer}>
-        <Text style={styles.time}>{time}</Text>
+        {time && <Text style={styles.time}>{time}</Text>}
         {!!messageCount &&
           <View style={styles.messageCountContainer}>
             <Text style={styles.messageCount}>{messageCount}</Text>
           </View>
         }
+        {rightIcon}
       </View>
     </TouchableOpacity>
   )
@@ -83,5 +93,10 @@ const styles = StyleSheet.create({
   rightContainer: {
     alignItems: "flex-end",
     gap: verticalScale(7),
+  },
+  flexRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: scale(7),
   },
 })
